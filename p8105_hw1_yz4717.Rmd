@@ -1,0 +1,33 @@
+---
+title: "p8105_hw1_yz4717"
+author: "Yang Zhao__yz4717"
+date: "2023-09-18"
+output: html_document
+---
+
+First, we have to install the package.
+
+```{r installpk,eval=FALSE}
+install.packages("moderndive")
+```
+
+Then, I input the data which was mentioned in the problem.
+```{r input}
+library(moderndive)
+data("early_january_weather")
+```
+
+
+```{r}
+names(early_january_weather)
+```
+All names of vectors are shown above.
+
+```{r}
+shape_dat = c(
+  row = nrow(early_january_weather),
+  col = ncol(early_january_weather)
+)
+shape_dat
+```
+
