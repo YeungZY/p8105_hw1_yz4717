@@ -5,7 +5,7 @@ date: "2023-09-18"
 output: html_document
 ---
 
-First, we have to install the package.
+First, we have to install the package(the code will be displayed and won't excuted).
 
 ```{r installpk,eval=FALSE}
 install.packages("moderndive")
@@ -17,7 +17,7 @@ library(moderndive)
 data("early_january_weather")
 ```
 
-
+As metioned 
 ```{r}
 names(early_january_weather)
 ```
@@ -29,5 +29,10 @@ shape_dat = c(
   col = ncol(early_january_weather)
 )
 shape_dat
+```
+
+```{r}
+rs_mean = mean(early_january_weather$temp)
+rs_mean
 ```
 
