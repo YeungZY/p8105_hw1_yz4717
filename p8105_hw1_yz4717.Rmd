@@ -12,27 +12,55 @@ install.packages("moderndive")
 ```
 
 Then, I input the data which was mentioned in the problem.
+
 ```{r input}
 library(moderndive)
+library(tidyverse)
+library(ggplot2)
 data("early_january_weather")
 ```
 
-As metioned 
+## Problem 1
+
+As mentioned, we can use the function "names()" to list all the variables.
+
 ```{r}
 names(early_january_weather)
 ```
 All names of vectors are shown above.
 
 ```{r}
-shape_dat = c(
-  row = nrow(early_january_weather),
-  col = ncol(early_january_weather)
-)
-shape_dat
+shape_row = nrow(early_january_weather)
+shape_col = ncol(early_january_weather)
 ```
-
+The dataset contains `r shape_row` Rows * `r shape_col` Columns.
 ```{r}
 rs_mean = mean(early_january_weather$temp)
-rs_mean
+```
+And calculation of mean of temperature are shown, so the result is `r rs_mean`.
+Then, I used the ggplot function to generate a scatterplot of tempureture and time
+
+```{r}
+time_temp_tib = tibble(
+  time = pull(early_january_weather,time_hour),
+  temp = pull(early_january_weather,temp),
+  humid = pull(early_january_weather,humid)
+)
+
+ggplot(
+  data = time_temp_tib
+)+geom_point(
+  mapping = aes(
+    x = time,
+    y = temp,
+    color = humid)
+)
+```
+I prefer to pull out all the needed vectors and make a new table for them. After that, I used ggplot function to generate a scatterplot (x-axis - time_hour, y-axis - temp)
+
+
+
+```{r}
+ggsave(path = "scatterplot.pdf")
 ```
 

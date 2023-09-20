@@ -357,11 +357,14 @@ display: none;
 </div>
 
 
-<p>First, we have to install the package.</p>
+<p>First, we have to install the package(the code will be displayed and
+won’t excuted).</p>
 <pre class="r"><code>install.packages(&quot;moderndive&quot;)</code></pre>
 <p>Then, I input the data which was mentioned in the problem.</p>
 <pre class="r"><code>library(moderndive)
 data(&quot;early_january_weather&quot;)</code></pre>
+<p>As mentioned, we can use the function “names()” to list all the
+variables.</p>
 <pre class="r"><code>names(early_january_weather)</code></pre>
 <pre><code>##  [1] &quot;origin&quot;     &quot;year&quot;       &quot;month&quot;      &quot;day&quot;        &quot;hour&quot;      
 ##  [6] &quot;temp&quot;       &quot;dewp&quot;       &quot;humid&quot;      &quot;wind_dir&quot;   &quot;wind_speed&quot;
@@ -370,10 +373,10 @@ data(&quot;early_january_weather&quot;)</code></pre>
 <pre class="r"><code>shape_dat = c(
   row = nrow(early_january_weather),
   col = ncol(early_january_weather)
-)
-shape_dat</code></pre>
-<pre><code>## row col 
-## 358  15</code></pre>
+)</code></pre>
+<pre class="r"><code>rs_mean = mean(early_january_weather$temp)</code></pre>
+<p>And calculation of mean of temperature are shown, so the result is
+39.5821229</p>
 
 
 
