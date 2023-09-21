@@ -27,16 +27,20 @@ As mentioned, we can use the function "names()" to list all the variables.
 ```{r list_name}
 names(early_january_weather)
 ```
+
 All names of vectors are shown above.
 
 ```{r shape}
 shape_row = nrow(early_january_weather)
 shape_col = ncol(early_january_weather)
 ```
+
 The dataset contains `r shape_row` Rows * `r shape_col` Columns.
+
 ```{r cal_mean}
 rs_mean = mean(early_january_weather$temp)
 ```
+
 And calculation of mean of temperature are shown, so the result is `r rs_mean`.
 Then, I used the ggplot function to generate a scatterplot of tempureture and time
 
@@ -58,6 +62,7 @@ plot_sc =
 )
 plot_sc
 ```
+
 I prefer to pull out all the needed vectors and make a new table for them. After that, I used ggplot function to generate a scatterplot (x-axis - time_hour, y-axis - temp). There are ups and downs in the graph. 
 
 
@@ -103,3 +108,34 @@ mean_rs
 ```
 
 As the question mentioned, I used the "mean()" function to calculate average. As you can see, this function can calculate the mean of numeric and logical vector. It is obvious that it can calculate numeric vector and can not calculate character vector. When it comes to logical vector, we can still get a result, just because the logical value is a simple '0' or '1' in the computer(which stands for 'False' or 'True' respectively).
+
+```{r convert type, eval=FALSE}
+vc_norm_new = as.matrix(vc_norm)
+
+vc_logic_new = as.numeric(vc_logic)
+
+vc_char_new = as.numeric(vc_char)
+
+vc_fac_new = as.numeric(vc_fac)
+
+cframe_new = list(
+  vc_norm_new,
+  vc_logic_new,
+  vc_char_new,
+  vc_fac_new
+)
+
+```
+
+As the analysis mentioned, logical and numeric vector can convert into numeric one without any difficulty just because they are actual numbers in the system. So, the system can't convert character vector. When it comes to factor vector, if we are going to transfer this data type, the system will convert them into real numbers.
+
+```{r cal_mean_coverted, eval=FALSE}
+mean_rs_new = list(
+  mean(vc_norm_new),
+  mean(vc_logic_new),
+  mean(vc_char_new),
+  mean(vc_fac_new)
+)
+```
+
+The mean calculation of each elements are shown above. Except the character vector, the others can be calculated. 
