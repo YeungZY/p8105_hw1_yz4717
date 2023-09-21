@@ -2,7 +2,8 @@
 title: "p8105_hw1_yz4717"
 author: "Yang Zhao__yz4717"
 date: "2023-09-18"
-output: html_document
+output: 
+    html_document
 ---
 
 First, we have to install the package(the code will be displayed and won't excuted).
@@ -13,7 +14,7 @@ install.packages("moderndive")
 
 Then, I input the data which was mentioned in the problem and all the needed packages.
 
-```{r input}
+```{r input_pkg,message=FALSE}
 library(moderndive)
 library(tidyverse)
 library(ggplot2)
@@ -42,7 +43,7 @@ rs_mean = mean(early_january_weather$temp)
 ```
 
 And calculation of mean of temperature are shown, so the result is `r rs_mean`.
-Then, I used the ggplot function to generate a scatterplot of tempureture and time
+Then, I used the ggplot function to generate a scatterplot of tempureture and time.The specific procedure will be shown in the following chunck.
 
 ```{r pull_plot}
 time_temp_tib = tibble(
@@ -63,18 +64,17 @@ plot_sc =
 plot_sc
 ```
 
-I prefer to pull out all the needed vectors and make a new table for them. After that, I used ggplot function to generate a scatterplot (x-axis - time_hour, y-axis - temp). There are ups and downs in the graph. 
-
-
+To make it much more clear, I prefer to pull out all the needed vectors and make a new table for them. After that, I used ggplot function to generate a scatterplot (x-axis stands for time_hour, y-axis stands for temp). In the graph, there are ups and downs in the graph which looks like numerous cycle. The point in the bottom is in a brighter color, and as the temperature goes up, it will become darker. It's obvious that when the rainy weather comes, temperature will drop and humidity will rise. In a sunny day, The sun is constantly evaporating the earth's moisture as well. As a result, this cycle makes sense.   
 
 ```{r save_plot}
 ggsave("sc_plot.png",device = "png")
 ```
 
+Then, I use "ggsave" to save last plot.
 
-##Problem 2
+## Problem 2
 
-Then, I generated a random sample of size 10 from normal distribution.
+In problem2, I generated 4 different vector and grouped them into a data frame. The specific code and result are shown below.
 
 ```{r create_df}
 vc_norm = rnorm(10,mean = 0,sd = 1)
@@ -95,7 +95,7 @@ combined_frame = data.frame(
 )
 ```
 
-I created a random sample for standard normal distribution(mean = 0, sd = 1),a logical vector, a character vector and a  and the result are shown above.
+Then, I tried to calculate average of these four vector.
 
 ```{r test_mean}
 mean_1 = mean(vc_norm)
