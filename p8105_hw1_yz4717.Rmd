@@ -24,23 +24,23 @@ data("early_january_weather")
 
 As mentioned, we can use the function "names()" to list all the variables.
 
-```{r}
+```{r list_name}
 names(early_january_weather)
 ```
 All names of vectors are shown above.
 
-```{r}
+```{r shape}
 shape_row = nrow(early_january_weather)
 shape_col = ncol(early_january_weather)
 ```
 The dataset contains `r shape_row` Rows * `r shape_col` Columns.
-```{r}
+```{r cal_mean}
 rs_mean = mean(early_january_weather$temp)
 ```
 And calculation of mean of temperature are shown, so the result is `r rs_mean`.
 Then, I used the ggplot function to generate a scatterplot of tempureture and time
 
-```{r}
+```{r pull_plot}
 time_temp_tib = tibble(
   time = pull(early_january_weather,time_hour),
   temp = pull(early_january_weather,temp),
@@ -62,7 +62,7 @@ I prefer to pull out all the needed vectors and make a new table for them. After
 
 
 
-```{r}
+```{r save_plot}
 ggsave("sc_plot.png",device = "png")
 ```
 
@@ -71,7 +71,7 @@ ggsave("sc_plot.png",device = "png")
 
 Then, I generated a random sample of size 10 from normal distribution.
 
-```{r}
+```{r create_df}
 vc_norm = rnorm(10,mean = 0,sd = 1)
 
 vc_logic = vc_norm > 0
@@ -92,7 +92,7 @@ combined_frame = data.frame(
 
 I created a random sample for standard normal distribution(mean = 0, sd = 1),a logical vector, a character vector and a  and the result are shown above.
 
-```{r}
+```{r test_mean}
 mean_1 = mean(vc_norm)
 mean_2 = mean(vc_logic)
 mean_3 = mean(vc_char)
