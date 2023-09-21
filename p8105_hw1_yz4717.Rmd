@@ -11,7 +11,7 @@ First, we have to install the package(the code will be displayed and won't excut
 install.packages("moderndive")
 ```
 
-Then, I input the data which was mentioned in the problem.
+Then, I input the data which was mentioned in the problem and all the needed packages.
 
 ```{r input}
 library(moderndive)
@@ -47,7 +47,8 @@ time_temp_tib = tibble(
   humid = pull(early_january_weather,humid)
 )
 
-ggplot(
+plot_sc = 
+  ggplot(
   data = time_temp_tib
 )+geom_point(
   mapping = aes(
@@ -55,12 +56,40 @@ ggplot(
     y = temp,
     color = humid)
 )
+plot_sc
 ```
-I prefer to pull out all the needed vectors and make a new table for them. After that, I used ggplot function to generate a scatterplot (x-axis - time_hour, y-axis - temp)
+I prefer to pull out all the needed vectors and make a new table for them. After that, I used ggplot function to generate a scatterplot (x-axis - time_hour, y-axis - temp). There are ups and downs in the graph. 
 
 
 
 ```{r}
-ggsave(path = "scatterplot.pdf")
+ggsave("sc_plot.png",device = "png")
 ```
+
+
+##Problem 2
+
+Then, I generated a random sample of size 10 from normal distribution.
+
+```{r}
+vc_norm = rnorm(10,mean = 0,sd = 1)
+
+vc_logic = vc_norm > 0
+
+vc_char = c("a","b","c","d","e","f","g","h","i","j")
+
+vc_fac = factor(
+  c("Low", "Medium", "Low", "High", "Medium",
+    "Low", "High","Medium", "Low", "High"))
+
+combined_frame = data.frame(
+  normal_distri = vc_norm,
+  logical_vc = vc_logic,
+  character_vc = vc_char,
+  factor_vc = vc_fac
+)
+```
+
+I created a random sample for standard normal distribution(mean = 0, sd = 1), and the result are shown above.
+
 
