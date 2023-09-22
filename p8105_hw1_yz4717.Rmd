@@ -64,7 +64,7 @@ plot_sc =
     x = time,
     y = temp,
     color = humid)
-)+geom_point()+geom_line()
+)+geom_point()
 plot_sc
 ```
 
@@ -111,7 +111,7 @@ mean_rs = list(mean_1,mean_2,mean_3,mean_4)
 mean_rs
 ```
 
-As the question mentioned, I used the "mean()" function to calculate average. As you can see, this function can calculate the mean of numeric and logical vector. It is obvious that it can calculate numeric vector and can not calculate character vector. When it comes to logical vector, we can still get a result, just because the logical value is a simple '0' or '1' in the computer(which stands for 'False' or 'True' respectively).
+As the question mentioned, I used "mean()" function to calculate average. As you can see, this function can calculate the mean of numeric and logical vector. It is obvious that it can calculate numeric vector and can not calculate character vector. When it comes to logical vector, we can still get a result, just because the logical value is a simple '0' or '1' in computer system(which stands for 'False' or 'True' respectively).
 
 ```{r convert type, eval=FALSE}
 vc_norm_new = as.matrix(vc_norm)
