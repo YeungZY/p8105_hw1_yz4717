@@ -9,9 +9,9 @@ output:
 First of all, I input the data which was mentioned in the problem and all the needed packages.
 
 ```{r input_pkg,message=FALSE}
-library(moderndive)
-library(tidyverse)
-library(ggplot2)
+library(moderndive)# data
+library(tidyverse)# pull
+library(ggplot2) # ggplot
 data("early_january_weather")
 ```
 
@@ -20,26 +20,26 @@ data("early_january_weather")
 As mentioned, we can use the function "names()" to list all the variables.
 
 ```{r list_name}
-names(early_january_weather)
+names(early_january_weather)#list names
 ```
 
 All names of vectors are shown above.
 
 ```{r}
-skimr::skim(early_january_weather)
+skimr::skim(early_january_weather)#summary
 ```
 
 There are numerous parameters in the summary, I prefer to talk about two special parameters.First, the completion of gust speed is in poor condition, which only accounts for 14%. In such circumstance, this variable is unable to use. When it comes to wind direction, its variance is the highest among these variables. In other words, its has a wide range.
 
 ```{r shape}
-shape_row = nrow(early_january_weather)
-shape_col = ncol(early_january_weather)
+shape_row = nrow(early_january_weather)#get rows
+shape_col = ncol(early_january_weather)#get cols
 ```
 
 The dataset contains `r shape_row` Rows * `r shape_col` Columns.
 
 ```{r cal_mean}
-rs_mean = mean(early_january_weather$temp)
+rs_mean = mean(early_january_weather$temp)# calculate mean
 ```
 
 The temperature's mean is shown above, and the result is `r rs_mean` Fahrenheit degree.
@@ -50,7 +50,7 @@ time_temp_tib = tibble(
   time = pull(early_january_weather,time_hour),
   temp = pull(early_january_weather,temp),
   humid = pull(early_january_weather,humid)
-)
+)# get vector from dataframe
 
 plot_sc = 
   ggplot(
@@ -59,14 +59,15 @@ plot_sc =
     y = temp,
     color = humid)
 )+geom_point()
+#if we want to draw a curve a line, we can use geom_aline()
 
-plot_sc
+plot_sc # display plot
 ```
 
-To make it much more clear, I prefer to pull out all the needed vectors and make a new table for them. After that, I used ggplot function to generate a scatterplot (x-axis stands for time_hour, y-axis stands for temp).This is an hourly meterological data from EWR airport in New York for the month of January 2013. According to the graph, there are ups and downs in the graph which looks like numerous cycle. The points around the nadir of a cycle is in a brighter color. If we follow the points, we can get an observation that as the temperature rises, bright color will turn into a darker one. So, it's obvious that when temperature drops, the humidity will rise. As a result, this cycle makes sense.   
+To make it much more clear, I prefer to pull out all the needed vectors and make a new table for them. After that, I used ggplot function to generate a scatterplot (x-axis stands for time_hour, y-axis stands for temp).This is an hourly meterological data from EWR airport in New York for the month of January 2013. According to the graph, there are ups and downs in the graph which looks like numerous cycle. The points around the nadir of a cycle is usually in a brighter color. If we follow these points, we can get an observation that as the temperature rises, bright color will turn into a darker one. So, it's obvious that when temperature drops, the humidity will rise.   
 
 ```{r save_plot}
-ggsave("sc_plot.png",device = "png")
+ggsave("sc_plot.png",device = "png") #save it to default file
 ```
 
 Then, I use "ggsave" to save last plot.
@@ -86,6 +87,8 @@ vc_fac = factor(
   c("Low", "Medium", "Low", "High", "Medium",
     "Low", "High","Medium", "Low", "High"))
 
+#generate 4 different vectors
+
 combined_frame = data.frame(
   normal_distri = vc_norm,
   logical_vc = vc_logic,
@@ -93,6 +96,7 @@ combined_frame = data.frame(
   factor_vc = vc_fac
 )
 
+#group them into a dataframe
 ```
 
 Then, I tried to calculate average of these four vector.
@@ -107,16 +111,17 @@ mean_rs = list(mean_1,mean_2,mean_3,mean_4)
 mean_rs
 ```
 
-As the question mentioned, I used "mean()" function to calculate average. As you can see, this function can calculate the mean of numeric and logical vector. It is obvious that it can calculate numeric vector and can not calculate character vector. When it comes to logical vector, we can still get a result, just because the logical value is a simple '0' or '1' in computer system(which stands for 'False' or 'True' respectively).
+As the question mentioned, I used "mean()" function to calculate average. As you can see, this function can calculate the mean of numeric and logical vector. It is obvious that it can calculate numeric vector and can not calculate character vector.This reason is also true for the factor variable, which is essentially still a character variable at this point. When it comes to logical vector, the reason we can still get results is that the logical value is a simple '0' or '1' in computer system(which stands for 'False' or 'True' respectively).
 
 ```{r convert type, eval=FALSE}
-vc_norm_new = as.matrix(vc_norm)
+vc_norm_new = as.numeric(vc_norm)
 
 vc_logic_new = as.numeric(vc_logic)
 
 vc_char_new = as.numeric(vc_char)
 
 vc_fac_new = as.numeric(vc_fac)
+
 
 cframe_new = list(
   vc_norm_new,
@@ -127,7 +132,7 @@ cframe_new = list(
 
 ```
 
-As the analysis mentioned, logical and numeric vector can convert into numeric one without any difficulty just because they are actual numbers in the system. So, the system can't convert character vector. When it comes to factor vector, if we are going to transfer this data type, the system will convert them into real numbers.
+As the former analysis mentioned, logical and numeric vector can convert into numeric one without any difficulty just because they are actual numbers in the system. for the same reason, the system can't convert character vector. When it comes to factor vector, if we force R to do a type conversion, the system will convert them into real numbers.
 
 ```{r cal_mean_coverted, eval=FALSE}
 mean_rs_new = list(
