@@ -6,13 +6,7 @@ output:
     html_document
 ---
 
-First, we have to install the package(the code will be displayed and won't excuted).
-
-```{r installpk,eval=FALSE}
-install.packages("moderndive")
-```
-
-Then, I input the data which was mentioned in the problem and all the needed packages.
+First of all, I input the data which was mentioned in the problem and all the needed packages.
 
 ```{r input_pkg,message=FALSE}
 library(moderndive)
@@ -35,7 +29,7 @@ All names of vectors are shown above.
 skimr::skim(early_january_weather)
 ```
 
-There are numerous parameters in the result of summary, I prefer to talk about two special parameters.First, the completion of gust speed is in poor condition, which accounts for 14%. In such circumstance, this variable is unable to use.When it comes to wind direction, its variance is the highest among these variables. In other words, its has a wide range.
+There are numerous parameters in the summary, I prefer to talk about two special parameters.First, the completion of gust speed is in poor condition, which only accounts for 14%. In such circumstance, this variable is unable to use. When it comes to wind direction, its variance is the highest among these variables. In other words, its has a wide range.
 
 ```{r shape}
 shape_row = nrow(early_january_weather)
@@ -48,8 +42,8 @@ The dataset contains `r shape_row` Rows * `r shape_col` Columns.
 rs_mean = mean(early_january_weather$temp)
 ```
 
-The mean calculation of temperature are shown above, and the result is `r rs_mean` Fahrenheit degree.
-Then, I used the ggplot function to generate a scatterplot of tempureture and time.The specific procedure will be shown in the following chunck.
+The temperature's mean is shown above, and the result is `r rs_mean` Fahrenheit degree.
+Then, I used the ggplot function to generate a scatterplot of temperature and time.The specific procedure will be shown in the following chunck.
 
 ```{r pull_plot}
 time_temp_tib = tibble(
@@ -65,10 +59,11 @@ plot_sc =
     y = temp,
     color = humid)
 )+geom_point()
+
 plot_sc
 ```
 
-To make it much more clear, I prefer to pull out all the needed vectors and make a new table for them. After that, I used ggplot function to generate a scatterplot (x-axis stands for time_hour, y-axis stands for temp). In the graph, there are ups and downs in the graph which looks like numerous cycle. The point in the bottom is in a brighter color, and as the temperature goes up, it will become darker. It's obvious that when the rainy weather comes, temperature will drop and humidity will rise. In a sunny day, The sun is constantly evaporating the earth's moisture as well. As a result, this cycle makes sense.   
+To make it much more clear, I prefer to pull out all the needed vectors and make a new table for them. After that, I used ggplot function to generate a scatterplot (x-axis stands for time_hour, y-axis stands for temp).This is an hourly meterological data from EWR airport in New York for the month of January 2013. According to the graph, there are ups and downs in the graph which looks like numerous cycle. The points around the nadir of a cycle is in a brighter color. If we follow the points, we can get an observation that as the temperature rises, bright color will turn into a darker one. So, it's obvious that when temperature drops, the humidity will rise. As a result, this cycle makes sense.   
 
 ```{r save_plot}
 ggsave("sc_plot.png",device = "png")
@@ -97,6 +92,7 @@ combined_frame = data.frame(
   character_vc = vc_char,
   factor_vc = vc_fac
 )
+
 ```
 
 Then, I tried to calculate average of these four vector.
@@ -140,6 +136,7 @@ mean_rs_new = list(
   mean(vc_char_new),
   mean(vc_fac_new)
 )
+
 ```
 
 The mean calculation of each elements are shown above. Except the character vector, the others can be calculated. 
