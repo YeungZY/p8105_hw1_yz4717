@@ -776,10 +776,10 @@ mean_3 = mean(vc_char)</code></pre>
 <pre class="r"><code>mean_rs = list(mean_1,mean_2,mean_3,mean_4)
 mean_rs</code></pre>
 <pre><code>## [[1]]
-## [1] -0.3902367
+## [1] -0.1774958
 ## 
 ## [[2]]
-## [1] 0.3
+## [1] 0.4
 ## 
 ## [[3]]
 ## [1] NA
@@ -788,12 +788,13 @@ mean_rs</code></pre>
 ## [1] NA</code></pre>
 <p>As the question mentioned, I used “mean()” function to calculate
 average. As you can see, this function can calculate the mean of numeric
-and logical vector. It is obvious that it can calculate numeric vector
-and can not calculate character vector.This reason is also true for the
-factor variable, which is essentially still a character variable at this
-point. When it comes to logical vector, the reason we can still get
-results is that the logical value is a simple ‘0’ or ‘1’ in computer
-system(which stands for ‘False’ or ‘True’ respectively).</p>
+and logical vector. From our actual perceptions，it is obvious that it
+can calculate numeric vector and can not calculate character vector.This
+reason is also true for the factor variable, which is essentially still
+a character variable at this point. When it comes to logical vector, the
+reason we can still get results is that logical value is a simple ‘0’ or
+‘1’ in computer system(which stands for ‘False’ or ‘True’
+respectively).</p>
 <pre class="r"><code>vc_norm_new = as.numeric(vc_norm)
 
 vc_logic_new = as.numeric(vc_logic)
@@ -813,8 +814,8 @@ cframe_new = list(
 convert into numeric one without any difficulty just because they are
 actual numbers in the system. for the same reason, the system can’t
 convert character vector. When it comes to factor vector, if we force R
-to do a type conversion, the system will convert them into real
-numbers.</p>
+to do a type conversion, the system will convert them into real numbers
+automatically.</p>
 <pre class="r"><code>mean_rs_new = list(
   mean(vc_norm_new),
   mean(vc_logic_new),
